@@ -35,6 +35,7 @@ class WelcomeScreen extends StatelessWidget {
               customButtonForSocialMedia(
                 image: 'assets/icons/icons8-facebook.png',
                 text: 'Continue with Facebook',
+                onTap: () {},
               ),
               const SizedBox(
                 height: 24,
@@ -42,6 +43,7 @@ class WelcomeScreen extends StatelessWidget {
               customButtonForSocialMedia(
                 image: 'assets/icons/icons8-google.png',
                 text: 'Continue with Google',
+                onTap: () {},
               ),
               const SizedBox(
                 height: 24,
@@ -49,6 +51,7 @@ class WelcomeScreen extends StatelessWidget {
               customButtonForSocialMedia(
                 image: 'assets/icons/icons8-apple.png',
                 text: 'Continue with Apple',
+                onTap: () {},
               ),
               const SizedBox(
                 height: 54,
@@ -59,6 +62,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               defaultButton(
                 title: 'Sign in with password',
+                color: defualtButtonColor,
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -67,7 +71,6 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   );
                 },
-                color: defualtButtonColor,
               ),
               const SizedBox(
                 height: 54,
@@ -98,7 +101,7 @@ class WelcomeScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>  RegisterScreen(),
+                          builder: (context) => RegisterScreen(),
                         ),
                       );
                     },

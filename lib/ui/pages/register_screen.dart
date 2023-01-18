@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_app/ui/pages/login_screen.dart';
 import 'package:hotel_app/ui/shared/components/constants.dart';
 import 'package:hotel_app/ui/shared/components/widgets.dart';
 
@@ -30,7 +31,6 @@ class RegisterScreen extends StatelessWidget {
             defaultTextFormField(
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
-              onChanged: (value) {},
               hint: 'Email',
               prefix: Icons.email_outlined,
             ),
@@ -40,8 +40,8 @@ class RegisterScreen extends StatelessWidget {
             defaultTextFormField(
               controller: _passwordController,
               keyboardType: TextInputType.visiblePassword,
-              onChanged: (value) {},
-              hint: 'Password',),
+              hint: 'Password',
+            ),
             const SizedBox(
               height: 24,
             ),
@@ -101,72 +101,7 @@ class RegisterScreen extends StatelessWidget {
             const SizedBox(
               height: 28,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Spacer(),
-                Container(
-                  width: 84,
-                  height: 54,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: .6,
-                      color: Colors.black12,
-                      style: BorderStyle.solid,
-                    ),
-                    borderRadius: BorderRadius.circular(
-                      12,
-                    ),
-                  ),
-                  child: const Image(
-                    image: AssetImage(
-                      'assets/icons/icons8-facebook.png',
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                Container(
-                  width: 84,
-                  height: 54,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: .6,
-                      color: Colors.black12,
-                      style: BorderStyle.solid,
-                    ),
-                    borderRadius: BorderRadius.circular(
-                      12,
-                    ),
-                  ),
-                  child: const Image(
-                    image: AssetImage(
-                      'assets/icons/icons8-google.png',
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                Container(
-                  width: 84,
-                  height: 54,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: .6,
-                      color: Colors.black12,
-                      style: BorderStyle.solid,
-                    ),
-                    borderRadius: BorderRadius.circular(
-                      12,
-                    ),
-                  ),
-                  child: const Image(
-                    image: AssetImage(
-                      'assets/icons/icons8-apple.png',
-                    ),
-                  ),
-                ),
-                const Spacer(),
-              ],
-            ),
+            customButtonForSocialMediaSelect(),
             const SizedBox(
               height: 16,
             ),
@@ -184,7 +119,7 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 TextButton(
                   child: Text(
-                    'Sign up',
+                    'Sign in',
                     style: TextStyle(
                       color: defualtButtonColor,
                       fontSize: 14,
@@ -196,7 +131,7 @@ class RegisterScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => RegisterScreen(),
+                        builder: (context) => LoginScreen(),
                       ),
                     );
                   },

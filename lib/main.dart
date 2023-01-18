@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hotel_app/ui/pages/welcome_screen.dart';
+import 'package:flutter/services.dart';
+import '../ui/pages/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'Hotel Demo',
       themeMode: ThemeMode.light,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(

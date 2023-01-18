@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_app/api/api_provider.dart';
 import 'package:hotel_app/logic/login_domain.dart';
 import 'package:hotel_app/ui/pages/register_screen.dart';
 import 'package:hotel_app/ui/shared/components/constants.dart';
@@ -7,9 +6,9 @@ import 'package:hotel_app/ui/shared/components/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
-  bool checkBox = false;
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+  bool checkBoxValue = false;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +31,8 @@ class LoginScreen extends StatelessWidget {
                 height: 28,
               ),
               defaultTextFormField(
-                controller: emailController,
+                controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                onChanged: (value) {
-                  // emailController.text = value;
-                },
                 hint: 'Email',
                 prefix: Icons.email_outlined,
               ),
@@ -44,12 +40,18 @@ class LoginScreen extends StatelessWidget {
                 height: 28,
               ),
               defaultTextFormField(
-                  controller: passwordController,
-                  keyboardType: TextInputType.visiblePassword,
-                  onChanged: (value) {
-                    // passwordController.text = value;
-                  },
-                  hint: 'Password'),
+                hint: 'Password',
+                controller: _passwordController,
+                keyboardType: TextInputType.visiblePassword,
+                onSumit: (value) async {
+                  UserLogin login = UserLogin();
+                  var response = await login.login(body: {
+                    'email': _emailController.text,
+                    'password': _passwordController.text,
+                  });
+                  print(response['status']);
+                },
+              ),
               const SizedBox(
                 height: 24,
               ),
@@ -57,10 +59,10 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Checkbox(
-                    value: checkBox,
+                    value: checkBoxValue,
                     onChanged: (value) {
                       //setstate
-                      checkBox = value!;
+                      checkBoxValue = value!;
                     },
                     side: BorderSide(
                       width: 2.5,
@@ -90,15 +92,15 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () async {
                   UserLogin login = UserLogin();
                   var response = await login.login(body: {
-                    'email': emailController.text,
-                    'password': passwordController.text,
+                    'email': _emailController.text,
+                    'password': _passwordController.text,
                   });
                   print(response['status']);
                 },
                 color: defualtButtonColor,
               ),
               TextButton(
-                onPressed: (() {}),
+                onPressed: (){},
                 child: Text(
                   'Forgot the password?',
                   style: TextStyle(
@@ -116,72 +118,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(
                 height: 28,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Spacer(),
-                  Container(
-                    width: 84,
-                    height: 54,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: .6,
-                        color: Colors.black12,
-                        style: BorderStyle.solid,
-                      ),
-                      borderRadius: BorderRadius.circular(
-                        12,
-                      ),
-                    ),
-                    child: const Image(
-                      image: AssetImage(
-                        'assets/icons/icons8-facebook.png',
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  Container(
-                    width: 84,
-                    height: 54,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: .6,
-                        color: Colors.black12,
-                        style: BorderStyle.solid,
-                      ),
-                      borderRadius: BorderRadius.circular(
-                        12,
-                      ),
-                    ),
-                    child: const Image(
-                      image: AssetImage(
-                        'assets/icons/icons8-google.png',
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  Container(
-                    width: 84,
-                    height: 54,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: .6,
-                        color: Colors.black12,
-                        style: BorderStyle.solid,
-                      ),
-                      borderRadius: BorderRadius.circular(
-                        12,
-                      ),
-                    ),
-                    child: const Image(
-                      image: AssetImage(
-                        'assets/icons/icons8-apple.png',
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                ],
-              ),
+              customButtonForSocialMediaSelect(),
               const SizedBox(
                 height: 16,
               ),
